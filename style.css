@@ -1,157 +1,345 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-*{
+:root {
+  --primary-color: #356aff;
+  --bg-color: #f5f5f5;
+  --light-bg-color: #fff;
+  --text-color: #111116;
+  --light-text-color: #cdccd1;
+  --primary-text-color: #fff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 30px;
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: var(--primary-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-color);
+}
+
+/* Resetting margins, paddings, and box-sizing */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  min-height: 100vh;
-  background: url('./assets/images/back.png') no-repeat center center fixed;
-  background-size: cover;
-}
-.container{
-  max-width: 690px;
-  width: 100%;
-  padding: 30px;
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.01);
-}
-.wrapper{
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-.wrapper .text-input{
-  display: flex;
-  border-bottom: 1px solid #ccc;
-}
-.text-input .to-text{
-  border-radius: 0px;
-  border-left: 1px solid #ccc;
-}
-.text-input textarea{
-  height: 250px;
-  width: 100%;
-  border: none;
-  outline: none;
-  resize: none;
-  background: none;
-  font-size: 18px;
-  padding: 10px 15px;
-  border-radius: 5px;
-}
-.text-input textarea::placeholder{
-  color: #b7b6b6;
-}
-.controls, li, .icons, .icons i{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.controls{
-  list-style: none;
-  padding: 12px 15px;
-}
-.controls .row .icons{
-  width: 38%;
-}
-.controls .row .icons i{
-  width: 50px;
-  color: #adadad;
-  font-size: 14px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  justify-content: center;
-}
-.controls .row.from .icons{
-  padding-right: 15px;
-  border-right: 1px solid #ccc;
-}
-.controls .row.to .icons{
-  padding-left: 15px;
-  border-left: 1px solid #ccc;
-}
-.controls .row select{
-  color: #333;
-  border: none;
-  outline: none;
-  font-size: 18px;
-  background: none;
-  padding-left: 5px;
-}
-.text-input textarea::-webkit-scrollbar{
-  width: 4px;
-}
-.controls .row select::-webkit-scrollbar{
-  width: 8px;
-}
-.text-input textarea::-webkit-scrollbar-track,
-.controls .row select::-webkit-scrollbar-track{
-  background: #fff;
-}
-.text-input textarea::-webkit-scrollbar-thumb{
-  background: #ddd;
-  border-radius: 8px;
-}
-.controls .row select::-webkit-scrollbar-thumb{
-  background: #999;
-  border-radius: 8px;
-  border-right: 2px solid #ffffff;
-}
-.controls .exchange{
-  color: #adadad;
-  cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.2s ease;
-}
-.controls i:active{
-  transform: scale(0.9);
-}
-.container button{
-  width: 100%;
-  padding: 14px;
-  outline: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 17px;
-  border-radius: 5px;
-  background: #5372F0;
+  font-family: "Poppins", sans-serif;
 }
 
-@media (max-width: 660px){
-  .container{
-    padding: 20px;
-    
-  }
-  .wrapper .text-input{
+/* Body styling */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Dark mode styling */
+body.dark {
+  --bg-color: #111116;
+  --light-bg-color: #1c1b20;
+  --text-color: #fff;
+  --light-text-color: #58575c;
+}
+
+/* Container styling */
+.container {
+  position: relative;
+  width: 1200px;
+  padding: 0 20px;
+  display: flex;
+  gap: 10px;
+  
+}
+
+/* Card styling */
+.container .card {
+  flex: 1;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: var(--light-bg-color);
+}
+.container .card .from,
+.container .card .to {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.container .card .from {
+  margin-right: 20px;
+}
+.container .card .to {
+  margin-left: 20px;
+}
+.container .card .heading {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--light-text-color);
+  white-space: nowrap;
+}
+
+/* Dropdown styling */
+.dropdown-container {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.dropdown-container .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 30px;
+  background-color: var(--bg-color);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.dropdown-container .dropdown-toggle span {
+  flex: 1;
+  margin-left: 10px;
+}
+.dropdown-container .dropdown-toggle ion-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+.dropdown-container.active .dropdown-toggle {
+  border-radius: 20px 20px 0 0;
+}
+.dropdown-container.active .dropdown-toggle ion-icon:last-child {
+  transform: rotate(180deg);
+}
+.dropdown-container .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  padding: 20px;
+  z-index: 1;
+  list-style: none;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  transition: all 1s;
+  border-radius: 0 0 20px 20px;
+}
+.dropdown-container .dropdown-menu::-webkit-scrollbar {
+  width: 5px;
+}
+.dropdown-container .dropdown-menu::-webkit-scrollbar-track {
+  border-radius: 30px;
+  background: #f1f1f1;
+}
+.dropdown-container .dropdown-menu::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: var(--primary-color);
+}
+.dropdown-container.active .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-container .dropdown-menu li {
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--light-bg-color);
+  transition: all 0.3s ease;
+}
+.dropdown-container .dropdown-menu li:hover {
+  background-color: var(--light-bg-color);
+}
+.dropdown-container .dropdown-menu li.active {
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+}
+
+/* Text area styling */
+.container .text-area {
+  position: relative;
+}
+.container textarea {
+  width: 100%;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+}
+.container .text-area .chars {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 0.8rem;
+  color: var(--light-text-color);
+}
+
+/* Center container styling */
+.container .center {
+  position: relative;
+}
+.swap-position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 5px solid var(--bg-color);
+  transition: all 0.3s ease;
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+}
+.swap-position ion-icon {
+  font-size: 25px;
+}
+.swap-position:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* Card bottom styling */
+.card-bottom {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 20px;
+  border-top: 2px solid var(--bg-color);
+}
+.card-bottom p {
+  margin-bottom: 20px;
+}
+.card-bottom label {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+  cursor: pointer;
+  border-radius: 30px;
+  background-color: var(--bg-color);
+}
+.card-bottom label:hover {
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+}
+.card-bottom span {
+  font-size: 12px;
+  pointer-events: none;
+}
+.card-bottom ion-icon {
+  font-size: 20px;
+}
+.card-bottom button {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  cursor: pointer;
+  background-color: var(--bg-color);
+}
+.card-bottom button:hover {
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+}
+
+/* Toggle mode styling */
+.mode {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
+.toggle {
+  position: relative;
+  cursor: pointer;
+}
+.toggle-track {
+  width: 24px;
+  height: 50px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3px 0;
+  justify-content: space-between;
+  border: 1px solid var(--light-text-color);
+  background-color: var(--light-bg-color);
+  transition: all 0.2s ease;
+}
+.toggle-checkbox {
+  display: none;
+}
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  transition: all 0.5s;
+}
+.toggle input:checked ~ .toggle-thumb {
+  transform: translateY(25px);
+}
+.toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 800px) {
+  .container {
+    width: 100%;
+    margin-top: 20px;
     flex-direction: column;
-    
   }
-  .text-input .to-text{
-    border-left: 0px;
-    border-top: 1px solid #ccc;
+  .container .card {
+    width: 100%;
   }
-  .text-input textarea{
-    height: 200px;
+  .container .card .from {
+    margin-right: 0;
   }
-  .controls .row .icons{
-    display: none;
+  .container .card .to {
+    margin-left: 0;
   }
-  .container button{
-    padding: 13px;
-    font-size: 16px;
+  .container .card .from,
+  .container .card .to {
+    flex-direction: column;
   }
-  .controls .row select{
-    font-size: 16px;
+
+  .swap-position {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  .controls .exchange{
-    font-size: 14px;
+  .swap-position:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .swap-position ion-icon {
+    transform: rotate(90deg);
   }
 }
